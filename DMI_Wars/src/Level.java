@@ -28,7 +28,6 @@ public class Level {
 	PImage nivel1;
 	
 	
-	
 	int numLevel;
 	//relations
 		Enemy[] enemies;
@@ -40,14 +39,18 @@ public class Level {
 		enemies=new Enemy[4];
 		levelMap =new MapZone(0,0,app);
 		player1= new Player(6,1,levelMap);
-		//esti no va aqui
-		enemies[0]=new Enemy(7,7, levelMap, app);
-		enemies[1]=new Enemy(10,4, levelMap, app);
-		enemies[2]=new Enemy(4,10, levelMap, app);
-		enemies[3]=new Enemy(4,2, levelMap, app);
 		nivel1 = app.loadImage("Nivel 1.png");
-		//setObstacles
 		
+		switch(numLevel) {
+		case 1:
+			enemies[0]=new Enemy(7,7, levelMap, app);
+			enemies[1]=new Enemy(10,4, levelMap, app);
+			enemies[2]=new Enemy(4,10, levelMap, app);
+			enemies[3]=new Enemy(4,2, levelMap, app);
+			break;
+		case 2:
+			break;
+		}
 		
 	}
 	
@@ -94,10 +97,8 @@ public class Level {
 			levelMap.getTile(14,5).setType(1);
 			levelMap.getTile(18,0).setType(1);
 			levelMap.getTile(16,3).setType(1);
-			
-			
-			
-			System.out.println("ROW: "+player1.getRow()+"   COL:"+player1.getCol());
+
+			//System.out.println("ROW: "+player1.getRow()+"   COL:"+player1.getCol());
 			
 			
 			contarP++;
@@ -111,8 +112,18 @@ public class Level {
 					enemies[i].disparos();
 					//enemies[i].mover((int) random(1,4));
 					if(contarP%20==0) {
-					enemies[i].mover(( int )(Math.random()*4+1));
+						enemies[i].mover(( int )(Math.random()*4+1));
 					}
+					if( enemies[i].getVisible() && enemies[i].getX()==player1.getX() && enemies[i].getY()==player1.getY() ) {
+						
+						player1.reduceLife();
+						timeH++;
+					}
+					
+				}
+			if(timeH%20==0 && gameOver==false) {
+				player1.setVulnerable(true);
+				timeH=0;
 			}
 			//levelMap.pintar(app);
 			
@@ -216,11 +227,6 @@ public class Level {
 		
 	}//end pintarNivel
 	
-	private int random(int i, int j) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	public boolean getVictory() {
 		return victory;
@@ -271,6 +277,6 @@ public class Level {
 			player1.mover(direction);
 			//justOnce=false;
 		//}
-		
 	}
+	
 }

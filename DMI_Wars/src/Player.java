@@ -16,6 +16,8 @@ public class Player {
 		this.col=col;
 		yP=75+(50*row);
 		xP=75+(50*col);
+		//xP=75+(50*row);
+		//yP=75+(50*col);
 		//actualTile=tile;
 		this.refMap=refMap;
 		mainBomb=new Bomb(row,col, xP, yP, refMap);

@@ -99,8 +99,7 @@ public class Main extends PApplet{
 	public void keyPressed() {
 	for(int i=0;i<levels.length;i++) {
 		coolDownMove++;
-		System.out.println(coolDownMove);
-		System.out.println(canMove);
+
 		if(coolDownMove==10) {
 			coolDownMove=0;
 			canMove=true;

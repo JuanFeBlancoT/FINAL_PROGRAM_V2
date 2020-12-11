@@ -115,13 +115,10 @@ public class Enemy {
 					typeT=mapRef.getTileType(row,col+1);
 					
 					if(typeT==0) {
+						col=col+1;
+						x=75+(50*col);							
+						dir = 1;
 						
-						x=75+(50*col);
-						moved=true;
-						if(moved==true) {
-							col=col+1;
-							dir = 1;
-						}
 					}
 				}
 			
@@ -131,13 +128,10 @@ public class Enemy {
 					typeT=mapRef.getTileType(row,col-1);
 					
 					if(typeT==0) {
-						
+						col=col-1;
 						x=75+(50*col);
-						moved=true;
-						if(moved==true) {
-							col=col-1;
-							dir = 2;
-						}
+						dir = 2;
+						
 					}
 				}
 				break;
@@ -146,13 +140,10 @@ public class Enemy {
 					typeT=mapRef.getTileType(row+1,col);
 					
 					if(typeT==0) {
-						
+						row=row+1;
 						y=75+(50*row);
-						moved=true;
-						if(moved==true) {
-							row=row+1;
-							dir = 0;
-						}
+						dir = 0;
+						
 					}
 				}
 				break;
@@ -161,13 +152,9 @@ public class Enemy {
 					typeT=mapRef.getTileType(row-1,col);
 					
 					if(typeT==0){
-						
+						row=row-1;
 						y=75+(50*row);
-						moved=true;
-						if(moved==true) {
-							row=row-1;
-							dir = 3;
-						}
+						dir = 3;
 					}
 					
 				}
